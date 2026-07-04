@@ -5,26 +5,30 @@ import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+
 import java.io.IOException;
 
-/**
- *
- * @author MoaathAlrajab
- */
 public class FirestoreContext {
 
     public Firestore firebase() {
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("/files/key.json")))
+                    .setCredentials(GoogleCredentials.fromStream(
+                            getClass().getResourceAsStream("/files/key.json")
+                    ))
+                    .setStorageBucket("YOUR-PROJECT-ID.appspot.com")
                     .build();
-            FirebaseApp.initializeApp(options);
+
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
+
             System.out.println("Firebase is initialized");
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
         return FirestoreClient.getFirestore();
     }
-
-
 }

@@ -129,6 +129,9 @@
                                 text="Add"
                                 onAction="#addRecord"/>
 
+                        <Button text="Upload Picture"
+                                onAction="#uploadPicture"/>
+
                         <Button fx:id="switchroot"
                                 text="Switch"
                                 onAction="#switchToSecondary"/>
