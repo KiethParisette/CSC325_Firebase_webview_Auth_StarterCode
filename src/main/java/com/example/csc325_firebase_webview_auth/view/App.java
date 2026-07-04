@@ -11,6 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 /**
  * JavaFX App
  */
@@ -23,11 +30,38 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        // Initialize Firebase
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
-        scene = new Scene(loadFXML("/files/AccessFBView.fxml"));
-        primaryStage.setScene(scene);
+
+        // Splash screen
+        Label title = new Label("CSC325 Firebase Project");
+        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+
+        ProgressIndicator progress = new ProgressIndicator();
+
+        VBox splashRoot = new VBox(20, title, progress);
+        splashRoot.setAlignment(Pos.CENTER);
+
+        Scene splashScene = new Scene(splashRoot, 600, 400);
+
+        primaryStage.setTitle("Loading...");
+        primaryStage.setScene(splashScene);
         primaryStage.show();
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+
+        delay.setOnFinished(event -> {
+            try {
+                scene = new Scene(loadFXML("/files/AccessFBView.fxml"));
+                primaryStage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        delay.play();
     }
 
     public static void setRoot(String fxml) throws IOException {
