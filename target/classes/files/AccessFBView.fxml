@@ -17,7 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="571.0" prefWidth="894.0"
+<AnchorPane prefHeight="571.0"
+            prefWidth="894.0"
+            stylesheets="@style.css"
             xmlns="http://javafx.com/javafx/20.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
@@ -63,7 +65,9 @@
 
             <children>
 
-                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                <AnchorPane fx:id="leftPanel"
+                            prefHeight="200.0"
+                            prefWidth="200.0">
 
                     <children>
 
