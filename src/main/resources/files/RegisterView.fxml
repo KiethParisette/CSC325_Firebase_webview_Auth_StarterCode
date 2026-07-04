@@ -1,0 +1,17 @@
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.csc325_firebase_webview_auth.controller.RegisterController"
+      alignment="CENTER"
+      spacing="10">
+
+        <Label text="Register"/>
+
+        <TextField fx:id="nameField" promptText="Name"/>
+
+        <TextField fx:id="emailField" promptText="Email"/>
+
+        <PasswordField fx:id="passwordField" promptText="Password"/>
+
+        <Button text="Register"
+                onAction="#registerUser"/>
+
+</VBox>
